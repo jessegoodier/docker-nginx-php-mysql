@@ -1,0 +1,21 @@
+
+<source>
+  @type tail
+  path /var/log/nginx/oss/access.json
+  tag nginx.json
+  pos_file /var/log/nginx/oss/access-oss.json.pos
+  <parse>
+    @type json
+  </parse>
+</source>
+
+
+<match **.*>
+  @type elasticsearch
+  index_name fluentd.${tag}
+  scheme https
+  host elk-local.nginx.rocks
+  port 9200
+  user elastic
+  password sfghgs45yfsh7xfnhp9
+</match>
